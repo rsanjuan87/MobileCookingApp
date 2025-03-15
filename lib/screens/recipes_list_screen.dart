@@ -47,14 +47,14 @@ class RecipesListScreen extends StatelessWidget {
     _Recipe(
       imagePath: 'assets/images/pumpkin_soup.jpg',
       title: 'Pumpkin Soup',
-      description: 'A creamy and warming soup perfect for autumn.',
+      description: 'A creamy and warming soup perfect for autumn. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut auctor, diam vel ultrices venenatis, nulla sapien ultrices sapien, at ultrices sapien sapien nec sapien.',
       duration: 30,
       servings: 4,
     ),
     _Recipe(
       imagePath: 'assets/images/curry_soup.jpg',
       title: 'Vegan Thai Curry Soup',
-      description: 'Spicy and aromatic Thai-style curry soup.',
+      description: 'Spicy and aromatic Thai-style curry soup. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut auctor, diam vel ultrices venenatis' ,
       duration: 45,
       servings: 4,
     ),
@@ -81,7 +81,7 @@ class RecipesListScreen extends StatelessWidget {
     _Recipe(
       imagePath: 'assets/images/curry_soup.jpg',
       title: 'Vegan Thai Curry Soup',
-      description: 'Spicy and aromatic Thai-style curry soup.',
+      description: 'Spicy and aromatic Thai-style curry soup. Lorem ipsum dolor sit amet, consectetur ',
       duration: 45,
       servings: 4,
     ),
