@@ -60,232 +60,253 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       body: FadeTransition(
         opacity: _fadeAnimation,
         child: SafeArea(
-            child: PageView(
-          onPageChanged: (value) {
-            _selectedIndex = value;
-            _tabController?.animateTo(_selectedIndex);
-          },
-          controller: _pageController ??= PageController(initialPage: 0),
-          children: [
-            SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+          child: Stack(
+            children: [
+              PageView(
+                onPageChanged: (value) {
+                  _selectedIndex = value;
+                  _tabController?.animateTo(_selectedIndex);
+                },
+                controller: _pageController ??=
+                    PageController(initialPage: 0),
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Cooksy',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.search),
-                          onPressed: () {},
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  SizedBox(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
+                  SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 80),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(width: 20),
-                          const RecipeOfDaySection(
-                            title: 'Recipe',
-                            subtitle: 'of the day',
-                            recipeName: 'Roasted Pumpkin Soup',
-                            duration: 30,
-                            servings: 4,
-                            imagePath: 'assets/images/pumpkin_soup.jpg',
-                          ),
-                          const SizedBox(height: 32),
-                          const SizedBox(width: 16),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.5,
-                            child: Column(
+                          Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                CookTipCard(),
-                                const SizedBox(height: 16),
-                                UpdateCard(),
+                                const Text(
+                                  'Cooksy',
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.search),
+                                  onPressed: () {},
+                                ),
                               ],
                             ),
                           ),
-                          const SizedBox(width: 16),
+                          const SizedBox(height: 24),
+                          SizedBox(
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: [
+                                  SizedBox(width: 20),
+                                  const RecipeOfDaySection(
+                                    title: 'Recipe',
+                                    subtitle: 'of the day',
+                                    recipeName: 'Roasted Pumpkin Soup',
+                                    duration: 30,
+                                    servings: 4,
+                                    imagePath: 'assets/images/pumpkin_soup.jpg',
+                                  ),
+                                  const SizedBox(height: 32),
+                                  const SizedBox(width: 16),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    child: Column(
+                                      children: [
+                                        CookTipCard(),
+                                        const SizedBox(height: 16),
+                                        UpdateCard(),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(width: 16),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: const Text(
+                              'René Redzepi',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: const Text(
+                              'recommends you',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: const RecipeCard(
+                              imagePath: 'assets/images/curry_soup.jpg',
+                              title: 'Vegan Thai Curry Soup',
+                              description:
+                                  'Spice lovers will slurp up this soup in seconds. Featuring chili powder, smoked paprika, and cayenne pepper, every bowl brings the heat.',
+                              duration: 50,
+                              servings: 4,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(30).copyWith(top: 8),
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: OutlinedButton(
+                                onPressed: _onBrowseMoreTap,
+                                style: OutlinedButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 16, horizontal: 24),
+                                  side: const BorderSide(color: Colors.black),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(7),
+                                  ),
+                                ),
+                                child: const Text(
+                                  'Browse more recipes',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Text(
-                      'René Redzepi',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Text(
-                      'recommends you',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: const RecipeCard(
-                      imagePath: 'assets/images/curry_soup.jpg',
-                      title: 'Vegan Thai Curry Soup',
-                      description:
-                          'Spice lovers will slurp up this soup in seconds. Featuring chili powder, smoked paprika, and cayenne pepper, every bowl brings the heat.',
-                      duration: 50,
-                      servings: 4,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(30).copyWith(top: 8),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: OutlinedButton(
-                        onPressed: _onBrowseMoreTap,
-                        style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 16, horizontal: 24),
-                          side: const BorderSide(color: Colors.black),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(7),
-                          ),
-                        ),
-                        child: const Text(
-                          'Browse more recipes',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  RecipesListScreen(),
+                  Center(child: Text('Cook now !!!')),
+                  Center(child: Text('Settings')),
                 ],
               ),
-            ),
-            RecipesListScreen(),
-            Center(child: Text('Cook now !!!')),
-            Center(child: Text('Settings')),
-          ],
-        )),
-      ),
-      bottomNavigationBar: FadeTransition(
-        opacity: _fadeAnimation,
-        child: Container(
-          margin: const EdgeInsets.all(20),
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.05),
-                blurRadius: 10,
-                offset: const Offset(0, 5),
-              ),
-            ],
-          ),
-          child: TabBar(
-            controller: _tabController ??=
-                TabController(length: 4, vsync: this),
-            onTap: _onItemTapped,
-            indicator: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            labelColor: Colors.white,
-            unselectedLabelColor: Colors.grey,
-            labelStyle: const TextStyle(fontSize: 10),
-            unselectedLabelStyle: const TextStyle(fontSize: 10),
-            dividerHeight: 0,
-            labelPadding:
-                const EdgeInsets.symmetric(horizontal: 4, vertical: 0),
-            tabs: [
-              Tab(
-                height: 50,
-                icon: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Assets.images.idea.image(
-                      color: _selectedIndex == 0 ? Colors.white : Colors.grey,
-                      width: 20,
-                      height: 20,
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: Container(
+                    margin: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.05),
+                          blurRadius: 10,
+                          offset: const Offset(0, 5),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Text('Lightbulb', maxLines: 1),
-                    )
-                  ],
-                ),
-              ),
-              Tab(
-                height: 45,
-                icon: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Assets.images.todo.image(
-                      color: _selectedIndex == 1 ? Colors.white : Colors.grey,
-                      width: 20,
-                      height: 20,
+                    child: TabBar(
+                      controller: _tabController ??=
+                          TabController(length: 4, vsync: this),
+                      onTap: _onItemTapped,
+                      indicator: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      labelColor: Colors.white,
+                      unselectedLabelColor: Colors.grey,
+                      labelStyle: const TextStyle(fontSize: 10),
+                      unselectedLabelStyle: const TextStyle(fontSize: 10),
+                      dividerHeight: 0,
+                      labelPadding: const EdgeInsets.symmetric(
+                          horizontal: 4, vertical: 0),
+                      tabs: [
+                        Tab(
+                          height: 50,
+                          icon: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Assets.images.idea.image(
+                                color: _selectedIndex == 0
+                                    ? Colors.white
+                                    : Colors.grey,
+                                width: 20,
+                                height: 20,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text('Lightbulb', maxLines: 1),
+                              )
+                            ],
+                          ),
+                        ),
+                        Tab(
+                          height: 45,
+                          icon: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Assets.images.todo.image(
+                                color: _selectedIndex == 1
+                                    ? Colors.white
+                                    : Colors.grey,
+                                width: 20,
+                                height: 20,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text('My recipes', maxLines: 1),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Tab(
+                          height: 45,
+                          icon: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Assets.images.frying.image(
+                                color: _selectedIndex == 2
+                                    ? Colors.white
+                                    : Colors.grey,
+                                width: 20,
+                                height: 20,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text('Cook now!', maxLines: 1),
+                              )
+                            ],
+                          ),
+                        ),
+                        Tab(
+                          height: 45,
+                          icon: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Assets.images.settings.image(
+                                color: _selectedIndex == 3
+                                    ? Colors.white
+                                    : Colors.grey,
+                                width: 20,
+                                height: 20,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text('Settings', maxLines: 1),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Text('My recipes', maxLines: 1),
-                    ),
-                  ],
-                ),
-              ),
-              Tab(
-                height: 45,
-                icon: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Assets.images.frying.image(
-                      color: _selectedIndex == 2 ? Colors.white : Colors.grey,
-                      width: 20,
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Text('Cook now!', maxLines: 1),
-                    )
-                  ],
-                ),
-              ),
-              Tab(
-                height: 45,
-                icon: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Assets.images.settings.image(
-                      color: _selectedIndex == 3 ? Colors.white : Colors.grey,
-                      width: 20,
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Text('Settings', maxLines: 1),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ],
