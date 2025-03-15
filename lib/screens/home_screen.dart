@@ -44,7 +44,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   void _onBrowseMoreTap() async {
-    await _controller.forward();
     if (mounted) {
       _selectedIndex = 1;
       _tabController?.animateTo(_selectedIndex);
@@ -184,8 +183,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
             ),
             RecipesListScreen(),
-            Container(color: Colors.red, child: Text('asd')),
-            Container(color: Colors.blue, child: Text('asd')),
+            Center(child: Text('Cook now !!!')),
+            Center(child: Text('Settings')),
           ],
         )),
       ),
